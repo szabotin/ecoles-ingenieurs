@@ -2,13 +2,13 @@
     Trouve ton école
 </h2>
 <div class="container">
-    <form [formGroup]="formulaireDeRecherche" (ngSubmit)="onRecherche()">
+    <form [formGroup]="searchForm" (ngSubmit)="onRecherche()">
         <div class="form-group">
             <label for="classe"> Je suis </label>
             <select name="classe" id="classe">
                 <option value="Lyceen"> Lycéen </option>
-                <option value="dut"> en DUT </option>
-                <option value="cpge"> en CPGE </option>
+                <option value="DUT"> en DUT </option>
+                <option value="CPGE"> en CPGE </option>
             </select>
         </div>
 
