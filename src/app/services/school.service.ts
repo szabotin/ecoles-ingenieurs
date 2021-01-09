@@ -24,7 +24,7 @@ export class SchoolService {
     {
       name: "Polytech Clermont",
       acronym: "PC",
-      field: "GEN",
+      field: "G",
       entryLevel: ["Lycée", "DUT", "CPGE"],
       city: "Aubière",
       zipCode: 63170,
@@ -34,7 +34,7 @@ export class SchoolService {
     {
       name: "SIGMA Clermont",
       acronym: "SIGMA",
-      field: "GEN",
+      field: "MP",
       entryLevel: ["Lycée", "DUT", "CPGE"],
       city: "Aubière",
       zipCode: 63170,
@@ -132,11 +132,21 @@ export class SchoolService {
     // récupérer les données à partir de la base de données
   }
 
-  getSchoolFromRegion(region: string) {
+  displaySchools() {
+
+  }
+
+  // getSchoolFromRegion(region: string) {
+  //   for (var i = 0 ; i < this.schools.length ; i++) {
+  //     if (this.schools[i].region == region) {
+  //       console.log(this.schools[i].region)
+  //     }
+  //   }
+  // }
+
+  searchSchool(entryClass: string, field: string, region: string) {
     for (var i = 0 ; i < this.schools.length ; i++) {
-      if (this.schools[i].region == region) {
-        console.log(this.schools[i].region)
-      }
-    }
+      console.log(this.schools[i]['name'])
+    } 
   }
 }

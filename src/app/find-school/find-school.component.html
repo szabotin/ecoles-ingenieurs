@@ -2,10 +2,10 @@
     Trouve ton école
 </h2>
 <div class="container">
-    <form [formGroup]="searchForm" (ngSubmit)="onRecherche()">
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmitForm()">
         <div class="form-group">
             <label for="classe"> Je suis </label>
-            <select name="classe" id="classe">
+            <select name="classe" id="classe" class="form-control" formControlName="class">
                 <option value="Lyceen"> Lycéen </option>
                 <option value="DUT"> en DUT </option>
                 <option value="CPGE"> en CPGE </option>
@@ -13,8 +13,8 @@
         </div>
 
         <div class="form-group">
-            <label for="domaine"> Domaine d'études </label>
-            <select name="domaine" id="domaine">
+            <label for="field"> Domaine d'études </label>
+            <select name="field" id="field" class="form-control" formControlName="field">
                 <option value="AAA">Agronomie, agroalimentaire et agriculture</option>
                 <option value="AT">Aérospatial et transports</option>
                 <option value="B">Biologie</option>
@@ -44,7 +44,7 @@
 
         <div class="form-group">
             <label for="region"> Région souhaitée </label>
-            <select name="region" id="region">
+            <select name="region" id="region" class="form-control" formControlName="region">
                 <label for="region"> Région Souhaitée</label>
                 <option value="ARA">Auvergne-Rhône-Alpes</option>
                 <option value="BFC">Bourgogne-Franche-Comté</option>

@@ -22,15 +22,19 @@ export class FindSchoolComponent implements OnInit {
 
   initForm() {
     this.searchForm = this.formBuilder.group( {
-      classe: [''],
-      domaine: [''],
+      class: [''],
+      field: [''],
       region: ['']
     })
   }
   
-  onRecherche() {
-    // this.schoolService.getSchoolFromRegion()
-    console.log(this.searchForm);
+  onSubmitForm() {
+    const formValue = this.searchForm.value;
+    const entryClass = formValue['class'];
+    const field = formValue['field'];
+    const region = formValue['region'];
+
+    this.schoolService.searchSchool(entryClass, field, region);
     this.router.navigate(['/ecoles', 'liste-ecoles']);
   }
 }
