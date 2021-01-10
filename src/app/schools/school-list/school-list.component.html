@@ -1,1 +1,8 @@
-<p>school-list works!</p>
+<div class="container">
+    <div class="row" *ngFor="let school of schoolsToDisplay">
+        {{school.name}}
+        {{school.acronym}}
+        {{school.city}}
+        {{school.registrationFees}}
+    </div>
+</div>

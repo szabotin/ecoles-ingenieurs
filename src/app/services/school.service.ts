@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { School } from '../models/school-model';
+// import { School } from '../models/school-model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,7 @@ export class SchoolService {
       acronym: "ISIMA",
       field: "IMA", // Informatique et Mathématiques Appliquées
       entryLevel: ["Lycée", "DUT", "CPGE"],
+      address: "1 rue de la Chebarde",
       city: "Aubière",
       zipCode: 63170,
       region: "ARA",
@@ -24,8 +25,9 @@ export class SchoolService {
     {
       name: "Polytech Clermont",
       acronym: "PC",
-      field: "G",
+      field: "GEN",
       entryLevel: ["Lycée", "DUT", "CPGE"],
+      address: "1 rue de la Chebarde",
       city: "Aubière",
       zipCode: 63170,
       region: "ARA",
@@ -34,8 +36,9 @@ export class SchoolService {
     {
       name: "SIGMA Clermont",
       acronym: "SIGMA",
-      field: "MP",
+      field: "GEN",
       entryLevel: ["Lycée", "DUT", "CPGE"],
+      address: "1 rue de la Chebarde",
       city: "Aubière",
       zipCode: 63170,
       region: "ARA",
@@ -46,6 +49,7 @@ export class SchoolService {
       acronym: "VAS",
       field: "AAA", 
       entryLevel: ["DUT", "CPGE"],
+      address: "1 rue de la Chebarde",
       city: "Lempdes",
       zipCode: 63760,
       region: "ARA",
@@ -56,6 +60,7 @@ export class SchoolService {
       acronym: "ENSIMAG",
       field: "CAM", 
       entryLevel: ["CPGE"],
+      address: "1 rue de la Chebarde",
       city: "Paris",
       zipCode: 75000,
       region: "IDF",
@@ -66,6 +71,7 @@ export class SchoolService {
       acronym: "CS",
       field: "GEN",
       entryLevel: ["CPGE"],
+      address: "1 rue de la Chebarde",
       city: "Bourges",
       zipCode: 87800,
       region: "CEN",
@@ -76,6 +82,7 @@ export class SchoolService {
       acronym: "Mines",
       field: "GEN", 
       entryLevel: ["CPGE"],
+      address: "1 rue de la Chebarde",
       city: "Paris",
       zipCode: 75002,
       region: "IDF",
@@ -86,6 +93,7 @@ export class SchoolService {
       acronym: "INSA",
       field: "GC",
       entryLevel: ["DUT", "CPGE"],
+      address: "1 rue de la Chebarde",
       city: "Rouen",
       zipCode: 76000,
       region: "NOR",
@@ -96,6 +104,7 @@ export class SchoolService {
       acronym: "INSA",
       field: "EEA",
       entryLevel: ["Lycée", "DUT", "CPGE"],
+      address: "1 rue de la Chebarde",
       city: "Toulouse",
       zipCode: 33000,
       region: "MID",
@@ -106,6 +115,7 @@ export class SchoolService {
       acronym: "EPITA",
       field: "IMA", 
       entryLevel: ["CPGE"],
+      address: "1 rue de la Chebarde",
       city: "Les lilas",
       zipCode: 93003,
       region: "IDF",
@@ -116,6 +126,7 @@ export class SchoolService {
       acronym: "EPITECH",
       field: "IMA",
       entryLevel: ["Lycée", "DUT", "CPGE"],
+      address: "1 rue de la Chebarde",
       city: "Brest",
       zipCode: 29000,
       region: "BRE",
@@ -128,21 +139,20 @@ export class SchoolService {
     this.schoolsSubject.next(this.schools.slice());
   }
 
+  displaySchools() {
+  }
+
   getSchools() { 
     // récupérer les données à partir de la base de données
   }
 
-  displaySchools() {
-
+  getSchoolFromRegion(region: string) {
+    for (var i = 0 ; i < this.schools.length ; i++) {
+      if (this.schools[i].region == region) {
+        console.log(this.schools[i].region)
+      }
+    }
   }
-
-  // getSchoolFromRegion(region: string) {
-  //   for (var i = 0 ; i < this.schools.length ; i++) {
-  //     if (this.schools[i].region == region) {
-  //       console.log(this.schools[i].region)
-  //     }
-  //   }
-  // }
 
   searchSchool(entryClass: string, field: string, region: string) {
     for (var i = 0 ; i < this.schools.length ; i++) {

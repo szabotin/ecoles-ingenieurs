@@ -8,10 +8,18 @@ import { SchoolService } from 'src/app/services/school.service';
 })
 export class SchoolListComponent implements OnInit {
 
-  constructor(private schoolService: SchoolService) { }
+  schoolsToDisplay!: any[];
+  schoolsToDisplaySubscription!: any[];
+  constructor(private schoolsService: SchoolService) { }
 
   ngOnInit(): void {
-    this.schoolService.displaySchools() ;
+    this.schoolsToDisplaySubscription = this.schoolsService.schoolsSubject.subscribe(
+      (schoolsToDisplay: any[]) => {
+        this.schoolsToDisplay = schoolsToDisplay;
+      }
+    );
+    this.schoolsService.emitSchoolsSubject();
+    this.schoolsService.displaySchools();
   }
 
 }
