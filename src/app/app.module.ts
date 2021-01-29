@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SingleSchoolComponent } from './schools/single-school/single-school.component';
 import { SchoolListComponent } from './schools/school-list/school-list.component';
 import { SchoolService } from './services/school.service';
+import { AgmCoreModule } from '@agm/core';
 
 const appRoutes: Routes = [
   { path: 'page-principale', component: FindSchoolComponent },
@@ -34,7 +35,10 @@ const appRoutes: Routes = [
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBj6XhSv0hxXXXsITITjdzG-mqOK8dde8k'
+    })
   ],
   providers: [SchoolService],
   bootstrap: [AppComponent]

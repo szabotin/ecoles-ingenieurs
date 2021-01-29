@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { SchoolService } from 'src/app/services/school.service';
 
 @Component({
@@ -6,10 +7,11 @@ import { SchoolService } from 'src/app/services/school.service';
   templateUrl: './school-list.component.html',
   styleUrls: ['./school-list.component.scss']
 })
-export class SchoolListComponent implements OnInit {
+export class SchoolListComponent implements OnInit, OnDestroy {
 
   schoolsToDisplay!: any[];
-  schoolsToDisplaySubscription!: any[];
+  schoolsToDisplaySubscription!: Subscription;
+  
   constructor(private schoolsService: SchoolService) { }
 
   ngOnInit(): void {
@@ -19,7 +21,11 @@ export class SchoolListComponent implements OnInit {
       }
     );
     this.schoolsService.emitSchoolsSubject();
-    this.schoolsService.displaySchools();
   }
+
+  ngOnDestroy() {
+    this.schoolsService.schoolsSubject.unsubscribe();
+  }
+
 
 }

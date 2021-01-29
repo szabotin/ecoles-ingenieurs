@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SchoolService } from '../services/school.service';
@@ -9,6 +9,9 @@ import { SchoolService } from '../services/school.service';
   styleUrls: ['./find-school.component.scss']
 })
 export class FindSchoolComponent implements OnInit {
+
+  latitude = 45.000000;
+  longitude = 0.000000;
 
   searchForm!: FormGroup;
 
