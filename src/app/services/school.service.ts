@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 // import { School } from '../models/school-model';
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Region } from '../interfaces/region.interface';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SchoolService {
+
 
   //schools!: School[];
   schoolsSubject = new Subject<any[]>();
@@ -133,7 +138,8 @@ export class SchoolService {
       registrationFees: 4600
     }
   ];
-  constructor() { }
+  constructor(
+    private http: HttpClient) { }
 
   emitSchoolsSubject() {
     this.schoolsSubject.next(this.schools.slice());
@@ -158,5 +164,12 @@ export class SchoolService {
     for (var i = 0 ; i < this.schools.length ; i++) {
       console.log(this.schools[i]['name'])
     } 
+  }
+
+
+  getRegion(): Observable<Region[]>
+  {
+    //test de co à la bdd pour récup les régions
+    return this.http.get<Region[]>(environment.backendUrl + '/region');
   }
 }

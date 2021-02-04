@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,8 +19,6 @@ const appRoutes: Routes = [
   { path: 'ecoles/ecole-simple', component: SingleSchoolComponent},
   { path: '', component: FindSchoolComponent},
   { path: '**', redirectTo: 'page-principale'},
-
-
 ]
 
 @NgModule({
@@ -32,6 +31,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

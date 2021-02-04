@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 import { SchoolService } from '../services/school.service';
+import { Region } from '../interfaces/region.interface';
 
 @Component({
   selector: 'app-find-school',
@@ -15,12 +17,17 @@ export class FindSchoolComponent implements OnInit {
 
   searchForm!: FormGroup;
 
+  regions: Region[] = [];
+
+  
+
   constructor(private schoolService: SchoolService,
               private formBuilder: FormBuilder,
               private router: Router) { }
 
   ngOnInit(): void {
     this.initForm();
+    this.schoolService.getRegion().pipe(take(1)).subscribe(regions => this.regions = regions);
   }
 
   initForm() {
@@ -39,5 +46,7 @@ export class FindSchoolComponent implements OnInit {
 
     this.schoolService.searchSchool(entryClass, field, region);
     this.router.navigate(['/ecoles', 'liste-ecoles']);
+
+
   }
 }
