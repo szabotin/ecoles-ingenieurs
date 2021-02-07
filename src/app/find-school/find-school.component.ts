@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { SchoolService } from '../services/school.service';
 import { Region } from '../interfaces/region.interface';
+import { Domaine } from '../interfaces/domain.interface';
+import { Niveau } from '../interfaces/niveau.interface';
 
 @Component({
   selector: 'app-find-school',
@@ -17,9 +19,9 @@ export class FindSchoolComponent implements OnInit {
 
   searchForm!: FormGroup;
 
+  niveaux: Niveau[] = [];
   regions: Region[] = [];
-
-  
+  domaines: Domaine[] = [];
 
   constructor(private schoolService: SchoolService,
               private formBuilder: FormBuilder,
@@ -27,7 +29,9 @@ export class FindSchoolComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.schoolService.getRegion().pipe(take(1)).subscribe(regions => this.regions = regions);
+    this.schoolService.getRegionForSelector().pipe(take(1)).subscribe(regions => this.regions = regions);
+    this.schoolService.getDomaineForSelector().pipe(take(1)).subscribe(domaines => this.domaines = domaines);
+    this.schoolService.getNiveauForSelector().pipe(take(1)).subscribe(niveaux => this.niveaux = niveaux);
   }
 
   initForm() {
@@ -46,7 +50,5 @@ export class FindSchoolComponent implements OnInit {
 
     this.schoolService.searchSchool(entryClass, field, region);
     this.router.navigate(['/ecoles', 'liste-ecoles']);
-
-
   }
 }

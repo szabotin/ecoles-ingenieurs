@@ -5,6 +5,8 @@ import { Subject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Region } from '../interfaces/region.interface';
 import { environment } from '../../environments/environment';
+import { Domaine } from '../interfaces/domain.interface';
+import { Niveau } from '../interfaces/niveau.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -138,8 +140,7 @@ export class SchoolService {
       registrationFees: 4600
     }
   ];
-  constructor(
-    private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   emitSchoolsSubject() {
     this.schoolsSubject.next(this.schools.slice());
@@ -150,6 +151,10 @@ export class SchoolService {
 
   getSchools() { 
     // récupérer les données à partir de la base de données
+  }
+
+  getSingleSchool() {
+
   }
 
   getSchoolFromRegion(region: string) {
@@ -167,9 +172,15 @@ export class SchoolService {
   }
 
 
-  getRegion(): Observable<Region[]>
-  {
-    //test de co à la bdd pour récup les régions
+  getRegionForSelector(): Observable<Region[]> {
     return this.http.get<Region[]>(environment.backendUrl + '/region');
+  }
+
+  getDomaineForSelector(): Observable<Domaine[]> {
+    return this.http.get<Domaine[]>(environment.backendUrl + '/domaine');
+  }
+
+  getNiveauForSelector(): Observable<Niveau[]> {
+    return this.http.get<Niveau[]>(environment.backendUrl + '/niveau');
   }
 }

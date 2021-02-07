@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row" *ngFor="let school of schoolsToDisplay">
+    <div class="row text-center" *ngFor="let school of schoolsToDisplay" (click)="onClick()">
         {{school.name}}
         {{school.acronym}}
         {{school.city}}
