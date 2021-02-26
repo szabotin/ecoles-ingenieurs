@@ -10,6 +10,9 @@ import { SchoolService } from 'src/app/services/school.service';
 })
 export class SchoolListComponent implements OnInit, OnDestroy {
 
+  latitude = 45.000000;
+  longitude = 0.000000;
+
   schoolsToDisplay!: any[];
   schoolsToDisplaySubscription!: Subscription;
   
@@ -22,17 +25,16 @@ export class SchoolListComponent implements OnInit, OnDestroy {
         this.schoolsToDisplay = schoolsToDisplay;
       }
     );
-    this.schoolsService.emitSchoolsSubject();
-    this.schoolsService.getSchools();
+    //this.schoolsService.emitSchoolsSubject();
+    //this.schoolsService.getSchools();
   }
 
   onClick() {
+    
     this.router.navigate(['/ecoles','ecole-simple']);
   }
 
   ngOnDestroy() {
    // this.schoolsService.schoolsSubject.unsubscribe();
   }
-
-
 }

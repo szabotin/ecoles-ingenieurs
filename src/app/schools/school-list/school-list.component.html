@@ -1,8 +1,19 @@
-<div class="container">
-    <div class="row text-center" *ngFor="let school of schoolsToDisplay" (click)="onClick()">
-        {{school.name}}
-        {{school.acronym}}
-        {{school.city}}
-        {{school.registrationFees}}
+<div class="all">
+    <agm-map [latitude]="latitude" [longitude]="longitude">
+        <agm-marker *ngFor="let school of schoolsToDisplay" 
+                    [latitude]="school.latitude"
+                    [longitude]="school.longitude"
+                    [label]="school.name">
+        </agm-marker>
+    </agm-map>
+
+    <div class="container">
+        <div class="row" *ngFor="let school of schoolsToDisplay" (click)="onClick()">
+            <div>{{school.name}}</div>
+            <div>{{school.acronym}}</div>
+            <div>{{school.city}}</div>
+            <div>{{school.registrationFees}}</div>
+        </div>
     </div>
 </div>
+

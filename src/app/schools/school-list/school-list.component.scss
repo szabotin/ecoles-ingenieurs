@@ -1,9 +1,21 @@
+agm-map {
+    margin-top: 20px;
+    height: 30vh;
+    width: 90vw;
+}
+
+.container {
+    width: 90vw;
+}
 .row {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
     height: 20vh;
     background-color: white;
     border-color: black;
     border-width: 3px;
     border-style: solid;
     border-radius: 10px;
+    align-items: center;
 }

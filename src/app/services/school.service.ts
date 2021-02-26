@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-// import { School } from '../models/school-model';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Region } from '../interfaces/region.interface';
 import { environment } from '../../environments/environment';
 import { Domaine } from '../interfaces/domain.interface';
-import { Niveau } from '../interfaces/niveau.interface';
+import { NiveauEntree } from '../interfaces/niveauEntree.interface';
+import { Ecole } from '../interfaces/ecole.interface';
+import { Departement } from '../interfaces/departement.interface';
+import { TypeEntree } from '../interfaces/typeEntree.interfacee';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SchoolService {
 
-
-  //schools!: School[];
   schoolsSubject = new Subject<any[]>();
 
-  private schools = [ 
+  /*private schools = [ 
     {
       name: "Institut Supérieur d'Informatique, de Modélisation et de leurs Applications",
       acronym: "ISIMA",
@@ -27,7 +27,9 @@ export class SchoolService {
       city: "Aubière",
       zipCode: 63170,
       region: "ARA",
-      registrationFees: 601
+      registrationFees: 601,
+      latitude: 44.0000,
+      longitude: 1.0000,
     },
     {
       name: "Polytech Clermont",
@@ -38,7 +40,9 @@ export class SchoolService {
       city: "Aubière",
       zipCode: 63170,
       region: "ARA",
-      registrationFees: 601
+      registrationFees: 601,
+      latitude: 46.0000,
+      longitude: 1.5000,
     },
     {
       name: "SIGMA Clermont",
@@ -49,7 +53,9 @@ export class SchoolService {
       city: "Aubière",
       zipCode: 63170,
       region: "ARA",
-      registrationFees: 601
+      registrationFees: 601,
+      latitude: 45.800000,
+      longitude: 3.043000
     },
     {
       name: "VetAgro Sup",
@@ -139,38 +145,25 @@ export class SchoolService {
       region: "BRE",
       registrationFees: 4600
     }
-  ];
+  ];*/
+  
   constructor(private http: HttpClient) { }
 
-  emitSchoolsSubject() {
+ /* emitSchoolsSubject() {
     this.schoolsSubject.next(this.schools.slice());
   }
 
-  displaySchools() {
-  }
-
-  getSchools() { 
-    // récupérer les données à partir de la base de données
-  }
-
-  getSingleSchool() {
-
-  }
-
-  getSchoolFromRegion(region: string) {
-    for (var i = 0 ; i < this.schools.length ; i++) {
-      if (this.schools[i].region == region) {
-        console.log(this.schools[i].region)
-      }
-    }
-  }
 
   searchSchool(entryClass: string, field: string, region: string) {
     for (var i = 0 ; i < this.schools.length ; i++) {
       console.log(this.schools[i]['name'])
     } 
-  }
+  }*/
+  
 
+
+
+  //---------------------------------------------BackEnd Queries-------------------------------------------------------
 
   getRegionForSelector(): Observable<Region[]> {
     return this.http.get<Region[]>(environment.backendUrl + '/region');
@@ -180,7 +173,108 @@ export class SchoolService {
     return this.http.get<Domaine[]>(environment.backendUrl + '/domaine');
   }
 
-  getNiveauForSelector(): Observable<Niveau[]> {
-    return this.http.get<Niveau[]>(environment.backendUrl + '/niveau');
+  getNiveauForSelector(): Observable<NiveauEntree[]> {
+    return this.http.get<NiveauEntree[]>(environment.backendUrl + '/niveau');
   }
+
+  getAllSchool(): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.backendUrl + '/ecole');
+  }
+
+  getDepartementForSelector(): Observable<Departement[]> {
+    return this.http.get<Departement[]>(environment.backendUrl + '/departement');
+  }
+
+  getTypeForSelector(): Observable<TypeEntree[]> {
+    return this.http.get<TypeEntree[]>(environment.backendUrl + '/type');
+  }
+
+
+
+
+  getDepartementFromRegion(idRegion: string): Observable<Departement[]> {
+    return this.http.get<Departement[]>(environment.backendUrl + '/departementRegion/' + idRegion);
+  }
+
+
+
+
+  getSchoolFromRegion(idRegion: string): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.backendUrl + '/rechercheRegion/' + idRegion);
+  }
+
+  getSchoolFromDepartement(idDepartement: string): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.backendUrl + '/rechercheDepartement/' + idDepartement);
+  }
+
+  getSchoolFromNiveauEntree(idNiveau: number): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.backendUrl + '/rechercheNiveau/' + idNiveau);
+  }
+
+  getSchoolFromTypeEntree(idType: number): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.backendUrl + '/rechercheType/' + idType);
+  }
+
+  getSchoolFromDomaine(idDomaine: number): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.backendUrl + '/rechercheDomaine/' + idDomaine);
+  }
+
+
+
+
+  getSchoolFromNiveauRegion(idNiveau: number, idRegion: string): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.backendUrl + '/rechercheNiveauRegion/' + idNiveau + '/' + idRegion);
+  }
+
+  getSchoolFromNiveauDomaine(idNiveau: number, idDomaine: number): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.backendUrl + '/rechercheNiveauDomaine/' + idNiveau + '/' + idDomaine);
+  }
+
+  getSchoolFromRegionDomaine(idRegion: string, idDomaine: number): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.backendUrl + '/rechercheRegionDomaine/' + idRegion + '/' + idDomaine);
+  }
+
+
+
+  getSchoolFromFilters(idDomaine: number, idRegion: string, idNiveau: number): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.backendUrl + '/recherche/' + idDomaine + '/' + idRegion + '/' + idNiveau);
+  }
+
+  //----------------------------------------------------------------------------------------------------------
+
+  /*getIdFromNameDomaine(name: string, domaines: Domaine[]): number {
+    let id: number = 0;
+
+    for(var i = 0; i < domaines.length; i++)
+    {
+      if(domaines[i].domaine == name)
+      {
+        id = domaines[i].idDomaine;
+      }
+    }
+
+    return id;
+  }
+  getIdFromNameNivEntree(name: string, niveaux: NiveauEntree[]): number {
+    let id: number = 0;
+    niveaux.forEach(function(elem){
+      if(elem.niveau.localeCompare(name) == 0)
+      {
+        id = elem.idNivEntree;
+      }
+    })
+
+    return id;
+  }
+  getIdFromNameRegion(name: string, regions: Region[]): string {
+    let id: string = '';
+    regions.forEach(function(elem){
+      if(elem.nom == name)
+      {
+        id = elem.idRegion;
+      }
+    })
+
+    return id;
+  }*/
 }
