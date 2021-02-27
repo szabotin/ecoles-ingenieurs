@@ -18,6 +18,9 @@ import { TypeEntree } from '../interfaces/typeEntree.interfacee';
 })
 export class FindSchoolComponent implements OnInit {
 
+  latitude: 46.227638;
+  longitude: 2.213749;
+
   searchForm!: FormGroup;
 
   advancedSearch: boolean = false;
