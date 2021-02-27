@@ -1,71 +1,78 @@
 <h2 class="text-center">
-    Trouve ton école
+  Trouve ton école
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+  </svg>
 </h2>
+
 <div class="container">
+  <div class="container">
     <form [formGroup]="searchForm" (ngSubmit)="onSubmitForm()">
-        <div class="form-group">
-            <label for="classe"> Je suis en </label>
-            <select name="classe" id="classe" class="form-control" formControlName="class" [hidden]="true">
-                <option [ngValue]="niveau" *ngFor="let niveau of niveaux">{{niveau.niveau}}</option>
-                <option></option>
-            </select>
-        </div>
+      <div class="form-group">
+        <label for="classe"> Je suis en </label>
+        <select name="classe" id="classe" class="form-control" formControlName="class" [hidden]="true">
+          <option [ngValue]="niveau" *ngFor="let niveau of niveaux">{{niveau.niveau}}</option>
+          <option></option>
+        </select>
+      </div>
 
-        <div class="form-group" [hidden]="searchForm.controls.level.disabled">
-            <label for="level"> Je veux rentrer sur </label>
-            <select name="level" id="level" class="form-control" formControlName="level">
-                <option [ngValue]="type" *ngFor="let type of types">{{type.type}}</option>
-                <option></option>
-            </select>
-        </div>
+      <div class="form-group" [hidden]="searchForm.controls.level.disabled">
+        <label for="level"> Je veux rentrer sur </label>
+        <select name="level" id="level" class="form-control" formControlName="level">
+          <option [ngValue]="type" *ngFor="let type of types">{{type.type}}</option>
+          <option></option>
+        </select>
+      </div>
 
-        <div class="form-group">
-            <label for="field"> Domaine d'études </label>
-            <select name="field" id="field" class="form-control" formControlName="field">
-                <option [ngValue]="domaine" *ngFor="let domaine of domaines">{{domaine.domaine}}</option>
-                <option></option>
-            </select>
-        </div>
+      <div class="form-group">
+        <label for="field"> Domaine d'études </label>
+        <select name="field" id="field" class="form-control" formControlName="field">
+          <option [ngValue]="domaine" *ngFor="let domaine of domaines">{{domaine.domaine}}</option>
+          <option></option>
+        </select>
+      </div>
 
-        <div class="form-group">
-            <label for="region"> Région souhaitée </label>
-            <select name="region" id="region" class="form-control" formControlName="region"
-                    (change)="onRegionChange()">
-                <option [ngValue]="region" *ngFor="let region of regions">{{region.nom}}</option>
-                <option></option>
-            </select>
-        </div>
+      <div class="form-group">
+        <label for="region"> Région souhaitée </label>
+        <select name="region" id="region" class="form-control" formControlName="region"
+                (change)="onRegionChange()">
+          <option [ngValue]="region" *ngFor="let region of regions">{{region.nom}}</option>
+          <option></option>
+        </select>
+      </div>
 
-        <div class="form-group" [hidden]="searchForm.controls.department.disabled">
-            <label for="department"> Département souhaité </label>
-            <select name="department" id="department" class="form-control" formControlName="department">
-                <option [ngValue]="departement" *ngFor="let departement of departements">{{departement.nom}}</option>
-                <option></option>
-            </select>
-        </div>
-        
-        <button class="btn btn-primary" type="submit"> Rechercher </button>
+      <div class="form-group" [hidden]="searchForm.controls.department.disabled">
+        <label for="department"> Département souhaité </label>
+        <select name="department" id="department" class="form-control" formControlName="department">
+          <option [ngValue]="departement" *ngFor="let departement of departements">{{departement.nom}}</option>
+          <option></option>
+        </select>
+      </div>
+       <div>
+      <button class="btn btn-primary" type="submit">Rechercher</button>
+      <button class="btn" (click)="toggleAdvancedSearch()">Recherche Avancée</button>
+    </div>
     </form>
+   
+  </div>
 
-    <button class="btn" (click)="toggleAdvancedSearch()">Recherche Avancée</button>
-</div>
-
-<agm-map [latitude]="latitude" [longitude]="longitude" [zoom] = 5>
-    <agm-marker *ngFor="let ecole of ecoles" 
+  <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]=5>
+    <agm-marker *ngFor="let ecole of ecoles"
                 [latitude]="ecole.latitude"
                 [longitude]="ecole.longitude"
                 [markerClickable]="true"
                 (mouseOver)="agmMouseOver(infoWindow, $event)"
                 (mouseOut)="agmMouseOut(infoWindow, $event)"
                 (markerClick)="agmMarkerClick(ecole)">
-                <agm-info-window #infoWindow [latitude]="ecole.latitude" [longitude]="ecole.longitude">{{ecole.nom}}</agm-info-window>
+      <agm-info-window #infoWindow [latitude]="ecole.latitude" [longitude]="ecole.longitude">{{ecole.nom}}</agm-info-window>
     </agm-marker>
-</agm-map>
+  </agm-map>
 
-<div class="container">
+  <div class="container">
     <div class="row" *ngFor="let ecole of ecoles">
-        <div>{{ecole.nom}}</div>
-        <div>{{ecole.sigle}}</div>
-        <div>{{ecole.adresse}}</div>
+      <div>{{ecole.nom}}</div>
+      <div>{{ecole.sigle}}</div>
+      <div>{{ecole.adresse}}</div>
     </div>
+  </div>
 </div>

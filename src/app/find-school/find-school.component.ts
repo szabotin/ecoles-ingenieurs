@@ -22,9 +22,6 @@ export class FindSchoolComponent implements OnInit {
 
   advancedSearch: boolean = false;
 
-  latitude = 46.227638;
-  longitude = 2.213749;
-
   ecoles: Ecole[] = [];
   niveaux: NiveauEntree[] = [];
   regions: Region[] = [];

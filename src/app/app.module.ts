@@ -12,11 +12,13 @@ import { SingleSchoolComponent } from './schools/single-school/single-school.com
 import { SchoolListComponent } from './schools/school-list/school-list.component';
 import { SchoolService } from './services/school.service';
 import { AgmCoreModule } from '@agm/core';
+import { AuthComponent } from './auth/auth.component';
 
 const appRoutes: Routes = [
   { path: 'page-principale', component: FindSchoolComponent },
   { path: 'ecoles/liste-ecoles', component: SchoolListComponent},
   { path: 'ecoles/ecole-simple', component: SingleSchoolComponent},
+  { path: 'auth', component: AuthComponent},
   { path: '', component: FindSchoolComponent},
   { path: '**', redirectTo: 'page-principale'},
 ]
@@ -27,7 +29,8 @@ const appRoutes: Routes = [
     FindSchoolComponent,
     HeaderComponent,
     SingleSchoolComponent,
-    SchoolListComponent
+    SchoolListComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

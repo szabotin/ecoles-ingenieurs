@@ -1,7 +1,8 @@
 agm-map {
     margin-top: 20px;
-    height: 40vh;
-    width: 55vw;
+    margin-left: 5vw;
+    height: 60vh;
+    width: 60vw;
 }
 
 .row {
@@ -19,4 +20,17 @@ agm-map {
 
 .btn {
     margin-bottom: 10px;
+}
+
+.btn-primary {
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+form {
+    width: 20vw;
 }
