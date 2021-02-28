@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-auth',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
+  searchForm: FormGroup;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+
+  onSubmitForm()
+  {
+
+  }
 }
