@@ -3,6 +3,7 @@ agm-map {
     margin-left: 5vw;
     height: 60vh;
     width: 60vw;
+    border-radius: 20px;
 }
 
 .row {
@@ -20,6 +21,7 @@ agm-map {
 
 .btn {
     margin-bottom: 10px;
+    width: 100%;
 }
 
 .btn-primary {
@@ -33,4 +35,9 @@ agm-map {
 
 form {
     width: 20vw;
+}
+
+#schools {
+    display: flex;
+    flex-direction: column;
 }

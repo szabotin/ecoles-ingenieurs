@@ -66,12 +66,12 @@
       <agm-info-window #infoWindow [latitude]="ecole.latitude" [longitude]="ecole.longitude">{{ecole.nom}}</agm-info-window>
     </agm-marker>
   </agm-map>
+</div>
 
-  <div class="container">
-    <div class="row" *ngFor="let ecole of ecoles">
-      <div>{{ecole.nom}}</div>
-      <div>{{ecole.sigle}}</div>
-      <div>{{ecole.adresse}}</div>
-    </div>
+<div class="container" id="schools">
+  <div class="row" *ngFor="let ecole of ecoles">
+    <div>{{ecole.nom}}</div>
+    <div>{{ecole.sigle}}</div>
+    <div>{{ecole.adresse}}</div>
   </div>
 </div>

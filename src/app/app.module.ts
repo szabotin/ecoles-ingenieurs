@@ -13,6 +13,7 @@ import { SchoolListComponent } from './schools/school-list/school-list.component
 import { SchoolService } from './services/school.service';
 import { AgmCoreModule } from '@agm/core';
 import { AuthComponent } from './auth/auth.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
   { path: 'page-principale', component: FindSchoolComponent },
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBj6XhSv0hxXXXsITITjdzG-mqOK8dde8k'
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [SchoolService],
   bootstrap: [AppComponent]
