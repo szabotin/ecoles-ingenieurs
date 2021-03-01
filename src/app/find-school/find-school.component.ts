@@ -23,9 +23,6 @@ export class FindSchoolComponent implements OnInit {
 
   searchForm!: FormGroup;
 
-  longitude: number = 2.213749;
-  latitude: number = 46.227638;
-
   advancedSearch: boolean = false;
 
   ecoles: Ecole[] = [];
