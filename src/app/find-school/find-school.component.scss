@@ -28,7 +28,12 @@ agm-map {
 }
 
 form {
-    width: 20vw;
+    width: 100%;
+}
+
+#form-btn {
+    display: flex;
+    flex-direction: column;
 }
 
 figure.mat-figure figure.mat-grid-tile {
@@ -38,7 +43,7 @@ figure.mat-figure figure.mat-grid-tile {
 
 h2 {
     margin-top: 40px;
-    margin-bottom: -28px;
+    font-size: 5vh;
 }
 
 li {

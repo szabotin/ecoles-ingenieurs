@@ -10,17 +10,20 @@ a {
 .container-fluid {
     display: flex;
     flex-direction: row;
+    padding-top: 7vh;
 }
 
 h1 {
-    height: 10vh;
-    width: 80vw;
+  height: 10vh;
+  width: 80vw;
+  font-weight: bold;
+  font-size: 7vh;
 }
 
 svg {
     height: 10vh;
     width: 10vw;
-    margin-top: 2.5vh;
+    margin-top: -2.5vh;
     vertical-align: middle;
     color: white;
 }

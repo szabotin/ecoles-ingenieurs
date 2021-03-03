@@ -8,8 +8,6 @@ import { FindSchoolComponent } from './find-school/find-school.component';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SingleSchoolComponent } from './schools/single-school/single-school.component';
-import { SchoolListComponent } from './schools/school-list/school-list.component';
 import { SchoolService } from './services/school.service';
 import { AgmCoreModule } from '@agm/core';
 import { AuthComponent } from './auth/auth.component';
@@ -19,8 +17,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
 
 const appRoutes: Routes = [
   { path: 'page-principale', component: FindSchoolComponent },
-  { path: 'ecoles/liste-ecoles', component: SchoolListComponent},
-  { path: 'ecoles/ecole-simple', component: SingleSchoolComponent},
   { path: 'auth', component: AuthComponent},
   { path: '', component: FindSchoolComponent},
   { path: '**', redirectTo: 'page-principale'},
@@ -31,8 +27,6 @@ const appRoutes: Routes = [
     AppComponent,
     FindSchoolComponent,
     HeaderComponent,
-    SingleSchoolComponent,
-    SchoolListComponent,
     AuthComponent
   ],
   imports: [
