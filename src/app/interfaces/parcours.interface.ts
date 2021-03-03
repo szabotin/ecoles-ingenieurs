@@ -5,5 +5,5 @@ export interface Parcours {
     parcours: string;
     fraisScolarite: number | null;
     description: string | null;
-    ecoles: Ecole[];
+    codeUai: Ecole;
 }

@@ -4,11 +4,11 @@ import { Subject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Region } from '../interfaces/region.interface';
 import { environment } from '../../environments/environment';
-import { Domaine } from '../interfaces/domain.interface';
+import { Domaine } from '../interfaces/domaine.interface';
 import { NiveauEntree } from '../interfaces/niveauEntree.interface';
 import { Ecole } from '../interfaces/ecole.interface';
 import { Departement } from '../interfaces/departement.interface';
-import { TypeEntree } from '../interfaces/typeEntree.interfacee';
+import { TypeEntree } from '../interfaces/typeEntree.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -164,117 +164,129 @@ export class SchoolService {
 
 
   //---------------------------------------------BackEnd Queries-------------------------------------------------------
+  //------------------------------------------Queries for Selector-----------------------------------------------------
 
   getRegionForSelector(): Observable<Region[]> {
-    return this.http.get<Region[]>(environment.backendUrl + '/region');
+    return this.http.get<Region[]>(environment.researchBackendUrl + '/region');
   }
 
   getDomaineForSelector(): Observable<Domaine[]> {
-    return this.http.get<Domaine[]>(environment.backendUrl + '/domaine');
+    return this.http.get<Domaine[]>(environment.researchBackendUrl + '/domaine');
   }
 
   getNiveauForSelector(): Observable<NiveauEntree[]> {
-    return this.http.get<NiveauEntree[]>(environment.backendUrl + '/niveau');
-  }
-
-  getAllSchool(): Observable<Ecole[]>{
-    return this.http.get<Ecole[]>(environment.backendUrl + '/ecole');
+    return this.http.get<NiveauEntree[]>(environment.researchBackendUrl + '/niveau');
   }
 
   getDepartementForSelector(): Observable<Departement[]> {
-    return this.http.get<Departement[]>(environment.backendUrl + '/departement');
+    return this.http.get<Departement[]>(environment.researchBackendUrl + '/departement');
   }
 
   getTypeForSelector(): Observable<TypeEntree[]> {
-    return this.http.get<TypeEntree[]>(environment.backendUrl + '/type');
+    return this.http.get<TypeEntree[]>(environment.researchBackendUrl + '/type');
   }
 
 
 
+  getSchoolFromSimpleResearch(niveau: any, domaine: any, region: any): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/simpleSearch/' + niveau + '/' + domaine + '/' + region);
+  }
+
+  getSchoolFromAdvancedResearchV1(niveau: any, domaine: any, region: any, type: any, borneInf: any, borneSup: any): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/advancedSearchV1/' + niveau + '/' + domaine +'/' + region +'/' + type + '/' + borneInf + '/' + borneSup);
+  }
+
+  getSchoolFromAdvancedResearchV2(niveau: any, domaine: any, departement: any, type: any, borneInf: any, borneSup: any): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/advancedSearchV2/' + niveau + '/' + domaine +'/' + departement +'/' + type + '/' + borneInf + '/' + borneSup);
+  }
+
+  //----------------Queries to get department from region---------------------------------------------
 
   getDepartementFromRegion(idRegion: string): Observable<Departement[]> {
-    return this.http.get<Departement[]>(environment.backendUrl + '/departementRegion/' + idRegion);
+    return this.http.get<Departement[]>(environment.researchBackendUrl + '/departementRegion/' + idRegion);
   }
 
 
-
+  //----------------------Queries to get school from 1 arg------------------------------------
 
   getSchoolFromRegion(idRegion: string): Observable<Ecole[]>{
-    return this.http.get<Ecole[]>(environment.backendUrl + '/rechercheRegion/' + idRegion);
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/rechercheRegion/' + idRegion);
   }
 
   getSchoolFromDepartement(idDepartement: string): Observable<Ecole[]>{
-    return this.http.get<Ecole[]>(environment.backendUrl + '/rechercheDepartement/' + idDepartement);
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/rechercheDepartement/' + idDepartement);
   }
 
   getSchoolFromNiveauEntree(idNiveau: number): Observable<Ecole[]>{
-    return this.http.get<Ecole[]>(environment.backendUrl + '/rechercheNiveau/' + idNiveau);
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/rechercheNiveau/' + idNiveau);
   }
 
   getSchoolFromTypeEntree(idType: number): Observable<Ecole[]>{
-    return this.http.get<Ecole[]>(environment.backendUrl + '/rechercheType/' + idType);
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/rechercheType/' + idType);
   }
 
   getSchoolFromDomaine(idDomaine: number): Observable<Ecole[]>{
-    return this.http.get<Ecole[]>(environment.backendUrl + '/rechercheDomaine/' + idDomaine);
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/rechercheDomaine/' + idDomaine);
+  }
+
+  getSchoolFromFrais(borneInf: number, borneSup: number): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/rechercheFrais/' + borneInf + '/' + borneSup);
   }
 
 
-
+  //---------------------Queries to get school from 2 args----------------------------------------------
 
   getSchoolFromNiveauRegion(idNiveau: number, idRegion: string): Observable<Ecole[]>{
-    return this.http.get<Ecole[]>(environment.backendUrl + '/rechercheNiveauRegion/' + idNiveau + '/' + idRegion);
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/rechercheNiveauRegion/' + idNiveau + '/' + idRegion);
   }
 
   getSchoolFromNiveauDomaine(idNiveau: number, idDomaine: number): Observable<Ecole[]>{
-    return this.http.get<Ecole[]>(environment.backendUrl + '/rechercheNiveauDomaine/' + idNiveau + '/' + idDomaine);
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/rechercheNiveauDomaine/' + idNiveau + '/' + idDomaine);
   }
 
   getSchoolFromRegionDomaine(idRegion: string, idDomaine: number): Observable<Ecole[]>{
-    return this.http.get<Ecole[]>(environment.backendUrl + '/rechercheRegionDomaine/' + idRegion + '/' + idDomaine);
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/rechercheRegionDomaine/' + idRegion + '/' + idDomaine);
+  }
+
+  getSchoolFromNiveauFrais(idNiveau: number, borneInf: number, borneSup: number): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/rechercheNiveauFrais/' + idNiveau + '/' + borneInf + '/' + borneSup);
+  }
+
+  getSchoolFromDomaineFrais(idDomaine: number, borneInf: number, borneSup: number): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/rechercheDomaineFrais/' + idDomaine + '/' + borneInf + '/' + borneSup);
+  }
+
+  getSchoolFromTypeFrais(idType: number, borneInf: number, borneSup: number): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/rechercheTypeFrais/' + idType + '/' + borneInf + '/' + borneSup);
+  }
+
+  getSchoolFromTypeDomaine(idType: number, idDomaine: number): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/rechercheTypeDomaine/' + idType + '/' + idDomaine);
+  }
+
+  getSchoolFromNiveauType(idNiveau: number, idType: number): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/rechercheNiveauType/' + idNiveau + '/' + idType);
+  }
+
+  //-----------------------Queries to get school from 3 args-----------------------------------------
+
+  getSchoolFromDomaineRegionNiveau(idDomaine: number, idRegion: string, idNiveau: number): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/rechercheDomaineRegionNiveau/' + idDomaine + '/' + idRegion + '/' + idNiveau);
+  }
+
+  getSchoolFromDomaineTypeFrais(idDomaine: number, idType: number, borneInf: number, borneSup: number): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/rechercheDomaineTypeFrais/' + idDomaine + '/' + idType + '/' + borneInf + '/' + borneSup);
+  }
+
+  getSchoolFromNiveauTypeFrais(idNiveau: number, idType: number, borneInf: number, borneSup: number): Observable<Ecole[]>{
+    return this.http.get<Ecole[]>(environment.researchBackendUrl + '/rechercheNiveauTypeFrais/' + idNiveau + '/' + idType + '/' + borneInf + '/' + borneSup);
   }
 
 
+  //------------------------Queries to get school from 4 args---------------------------------------
 
-  getSchoolFromFilters(idDomaine: number, idRegion: string, idNiveau: number): Observable<Ecole[]>{
-    return this.http.get<Ecole[]>(environment.backendUrl + '/recherche/' + idDomaine + '/' + idRegion + '/' + idNiveau);
-  }
 
-  //----------------------------------------------------------------------------------------------------------
 
-  /*getIdFromNameDomaine(name: string, domaines: Domaine[]): number {
-    let id: number = 0;
 
-    for(var i = 0; i < domaines.length; i++)
-    {
-      if(domaines[i].domaine == name)
-      {
-        id = domaines[i].idDomaine;
-      }
-    }
-
-    return id;
-  }
-  getIdFromNameNivEntree(name: string, niveaux: NiveauEntree[]): number {
-    let id: number = 0;
-    niveaux.forEach(function(elem){
-      if(elem.niveau.localeCompare(name) == 0)
-      {
-        id = elem.idNivEntree;
-      }
-    })
-
-    return id;
-  }
-  getIdFromNameRegion(name: string, regions: Region[]): string {
-    let id: string = '';
-    regions.forEach(function(elem){
-      if(elem.nom == name)
-      {
-        id = elem.idRegion;
-      }
-    })
-
-    return id;
-  }*/
+  //-------------------------Queries to get school from all args------------------------------------
 }

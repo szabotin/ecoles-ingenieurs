@@ -1,8 +1,9 @@
 import { Commune } from "./commune.interface";
-import { Domaine } from "./domain.interface";
+import { Domaine } from "./domaine.interface";
 import { NiveauEntree } from "./niveauEntree.interface";
 import { Parcours } from "./parcours.interface";
-import { TypeEntree } from "./typeEntree.interfacee";
+import { TypeEntree } from "./typeEntree.interface";
+import { Utilisateur } from "./utilisateur.interface";
 
 export interface Ecole
 {
@@ -21,4 +22,5 @@ export interface Ecole
     niveauEntrees: NiveauEntree[];
     parcours: Parcours[];
     typeEntrees: TypeEntree[];
+    utilisateurs: Utilisateur[];
 }
